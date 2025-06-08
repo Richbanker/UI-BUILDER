@@ -1,0 +1,7 @@
+{
+  "rows": [
+    { "id": 1, "col1": "Тест 1", "col2": "test1@example.com" },
+    { "id": 2, "col1": "Тест 2", "col2": "test2@example.com" },
+    { "id": 3, "col1": "Тест 3", "col2": "test3@example.com" }
+  ]
+} 
