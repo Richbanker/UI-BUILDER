@@ -1,6 +1,3 @@
 {
-  "buildCommand": "cd apps/playground && npm install && npm run build",
-  "outputDirectory": "apps/playground/dist",
-  "installCommand": "npm install",
-  "framework": "vite"
+  "root": "apps/playground"
 } 
