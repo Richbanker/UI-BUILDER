@@ -1,5 +1,8 @@
 # DataGrid Designer
 
+
+[![Просмотры README](https://vbr.nathanchung.dev/badge?page_id=Richbanker.UI-BUILDER&text=README_Views)](https://github.com/Richbanker/UI-BUILDER)
+
 **DataGrid Designer** — современный визуальный конструктор таблиц для работы с большими наборами данных. Интерфейс полностью на русском языке.
 
 ## Интерфейс
