@@ -127,9 +127,10 @@ export function Table<T>({
 }: TableProps<T>) {
   const [localSortConfig, setLocalSortConfig] = useState<SortConfig | null>(null);
   const [localFilterConfig, setLocalFilterConfig] = useState<FilterConfig | null>(null);
+  const activeSortConfig = sortConfig ?? localSortConfig;
 
   const handleSort = (key: string) => {
-    const newDirection = sortConfig?.key === key && sortConfig.direction === 'asc' ? 'desc' : 'asc';
+    const newDirection = activeSortConfig?.key === key && activeSortConfig.direction === 'asc' ? 'desc' : 'asc';
     const newConfig: SortConfig = { key, direction: newDirection };
     setLocalSortConfig(newConfig);
     onSort?.(newConfig);
@@ -204,13 +205,14 @@ export function Table<T>({
             onClick={() => column.sortable && handleSort(column.key)}
           >
             {column.title}
-            {column.sortable && sortConfig?.key === column.key && (
-              <SortIcon className={sortConfig.direction} />
+            {column.sortable && activeSortConfig?.key === column.key && (
+              <SortIcon className={activeSortConfig.direction} />
             )}
             {column.filterable && (
               <FilterInput
                 type="text"
                 placeholder={`Filter ${column.title}`}
+                onClick={e => e.stopPropagation()}
                 onChange={e => handleFilter(column.key, e.target.value)}
               />
             )}
