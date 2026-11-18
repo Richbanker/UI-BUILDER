@@ -28,6 +28,9 @@ export const FormGenerator: React.FC<FormGeneratorProps> = ({
     if (field.required && !value) {
       return 'Это поле обязательно для заполнения';
     }
+    if (!field.required && (value === undefined || value === null || value === '')) {
+      return undefined;
+    }
 
     if (field.validation) {
       for (const rule of field.validation) {
