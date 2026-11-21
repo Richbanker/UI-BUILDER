@@ -60,10 +60,13 @@ export const Input: React.FC<InputProps> = ({
   fullWidth,
   ...props
 }) => {
+  const generatedId = React.useId();
+  const inputId = props.id ?? generatedId;
+
   return (
     <InputWrapper fullWidth={fullWidth}>
-      {label && <Label>{label}</Label>}
-      <StyledInput hasError={!!error} {...props} />
+      {label && <Label htmlFor={inputId}>{label}</Label>}
+      <StyledInput hasError={!!error} {...props} id={inputId} />
       {(error || helperText) && (
         <HelperText isError={!!error}>{error || helperText}</HelperText>
       )}
