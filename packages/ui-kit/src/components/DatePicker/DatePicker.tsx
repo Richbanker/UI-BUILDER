@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { format, parse, isValid } from 'date-fns';
 
@@ -130,6 +130,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     value ? format(value, dateFormat) : ''
   );
 
+  useEffect(() => {
+    setInputValue(value && isValid(value) ? format(value, dateFormat) : '');
+    if (value && isValid(value)) setCurrentDate(value);
+  }, [value, dateFormat]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputValue(newValue);
@@ -167,7 +172,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < startingDay; i++) {
-      days.push(<Day key={`empty-${i}`} disabled />);
+      days.push(<Day key={`empty-${i}`} type="button" disabled />);
     }
 
     // Add days of the month
@@ -179,6 +184,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       days.push(
         <Day
           key={day}
+          type="button"
           isSelected={isSelected}
           isToday={isToday}
           onClick={() => handleDayClick(date)}
@@ -191,9 +197,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     return (
       <Calendar>
         <CalendarHeader>
-          <NavigationButton onClick={handlePrevMonth}>←</NavigationButton>
+          <NavigationButton type="button" aria-label="Previous month" onClick={handlePrevMonth}>←</NavigationButton>
           <MonthYear>{format(currentDate, 'MMMM yyyy')}</MonthYear>
-          <NavigationButton onClick={handleNextMonth}>→</NavigationButton>
+          <NavigationButton type="button" aria-label="Next month" onClick={handleNextMonth}>→</NavigationButton>
         </CalendarHeader>
         <WeekDays>
           {weekDays.map((day) => (
