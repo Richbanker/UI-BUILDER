@@ -73,7 +73,7 @@ export const FormItem: React.FC<FormItemProps> = ({
       )}
       <ContentWrapper>
         {children}
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
         {help && !error && <HelpText>{help}</HelpText>}
       </ContentWrapper>
     </FormItemWrapper>
